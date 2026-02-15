@@ -1,37 +1,50 @@
 import 'package:flutter/material.dart';
 import 'PatientCard.dart';
-
+class Patient {
+  String name;
+  int age;
+  String gender;
+  String admittedDate;
+  Patient({
+    required this.name,
+    required this.age,
+    required this.gender,
+    required this.admittedDate,
+  });
+}
 class PatientListScreen extends StatefulWidget {
   const PatientListScreen({super.key});
 
   @override
   State<PatientListScreen> createState() => _PatientListScreenState();
 }
-
 class _PatientListScreenState extends State<PatientListScreen> {
-  final List<Map<String, dynamic>> patients = [
-    {
-      'name': 'Joy',
-      'age': 30,
-      'gender': 'MALE',
-      'admittedDate': '9/11/25',
-    },
-    {
-      'name': 'Munia',
-      'age': 23,
-      'gender': 'Female',
-      'admittedDate': '10/11/26',
-    },
+  List<Patient> patients = [
+    Patient(
+      name: 'Joy',
+      age: 30,
+      gender: 'MALE',
+      admittedDate: '9/11/25',
+    ),
+    Patient(
+      name: 'Munia',
+      age: 23,
+      gender: 'Female',
+      admittedDate: '10/11/26',
+    ),
+    Patient(
+        name: 'Fariha',
+        age: 22,
+        gender: 'Female',
+        admittedDate:'1/11/23')
   ];
 
   int get totalPatients => patients.length;
-
   void releasePatient(int index) {
     setState(() {
       patients.removeAt(index);
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,10 +87,10 @@ class _PatientListScreenState extends State<PatientListScreen> {
                 itemBuilder: (context, index) {
                   final patient = patients[index];
                   return PatientCard(
-                    name: patient['name'],
-                    age: patient['age'],
-                    gender: patient['gender'],
-                    admittedDate: patient['admittedDate'],
+                    name: patient.name,
+                    age: patient.age,
+                    gender: patient.gender,
+                    admittedDate: patient.admittedDate,
                     onRelease: () => releasePatient(index),
                   );
                 },
