@@ -23,27 +23,27 @@ List<Medicine> Medicinelist = [
   ),
   Medicine(
     medicineName: "Sergel",
-    medicineAvailable: 100,
+    medicineAvailable: 34,
     medicineImage: "assets/MedicineImages/sergel.jpg",
   ),
   Medicine(
-    medicineName: "Sergel",
-    medicineAvailable: 100,
+    medicineName: "Vitamin C",
+    medicineAvailable: 55,
     medicineImage: "assets/MedicineImages/sergel.jpg",
   ),
   Medicine(
-    medicineName: "Sergel",
-    medicineAvailable: 100,
+    medicineName: "Cef-3",
+    medicineAvailable: 22,
     medicineImage: "assets/MedicineImages/sergel.jpg",
   ),
   Medicine(
-    medicineName: "Sergel",
-    medicineAvailable: 100,
+    medicineName: "Vit D3",
+    medicineAvailable: 12,
     medicineImage: "assets/MedicineImages/sergel.jpg",
   ),
   Medicine(
-    medicineName: "Sergel",
-    medicineAvailable: 100,
+    medicineName: "Renova",
+    medicineAvailable: 54,
     medicineImage: "assets/MedicineImages/sergel.jpg",
   ),
 ];

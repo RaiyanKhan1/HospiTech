@@ -14,45 +14,66 @@ class _Inventory_PageState extends State<Inventory_Page> {
   int currentInventoryPage = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: currentInventoryPage == 0 ? Colors.green.withAlpha(60) :  Colors.orange.withAlpha(60),
+    return Container(
+      decoration: BoxDecoration(
 
-    body: Column(
-        children: [
-          Divider(height: 40, thickness: 0, color: Colors.transparent),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      currentInventoryPage = 0;
-                    });
-                  },
-                    child: Expanded(child: _AvailableMedicines())
-                ),
-              ),
+        gradient: currentInventoryPage == 0 ?LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFFFFFFF),
+            Color(0xFFFFFFFF),
+          ],
+        ) : LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Color(0xFFFFFFFF),
+            Color(0xFFFFFFFF),
+          ],
+        ) ,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
 
-              Expanded(
-                child: GestureDetector(
+      
+      body: Column(
+          children: [
+            Divider(height: 40, thickness: 0, color: Colors.transparent),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        currentInventoryPage = 1;
+                        currentInventoryPage = 0;
                       });
                     },
-                    child: Expanded(child: _AvailableEquipments())),
-              ),
-            ],
-          ),
-          Container(height: 30, color: Colors.transparent),
-
-          Expanded(child: currentInventoryPage == 0
-              ? _MedicineList()
-              : _EquipmentList(),)
-
-        ],
+                      child: Expanded(child: _AvailableMedicines())
+                  ),
+                ),
+      
+                Expanded(
+                  child: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          currentInventoryPage = 1;
+                        });
+                      },
+                      child: Expanded(child: _AvailableEquipments())),
+                ),
+              ],
+            ),
+      
+      
+            Expanded(child: currentInventoryPage == 0
+                ? _MedicineList()
+                : _EquipmentList(),)
+      
+          ],
+        ),
       ),
     );
   }
@@ -79,14 +100,15 @@ class _Inventory_PageState extends State<Inventory_Page> {
               ],
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(
-                    top: 20,
+                    top: 0,
                     bottom: 0,
-                    left: 35,
-                    right: 35,
+                    left: 30,
+                    right: 0,
                   ),
                   child: Image.asset(
                     medicine.medicineImage,
@@ -105,64 +127,67 @@ class _Inventory_PageState extends State<Inventory_Page> {
                   ),
                 ),
 
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerRight,
-                      margin: EdgeInsets.only(
-                        top: 0,
-                        bottom: 0,
-                        left: 20,
-                        right: 0,
-                      ),
-                      child: Text(
-                        style: TextStyle(fontSize: 20),
-                        medicine.medicineAvailable.toString() + " Pc",
-                      ),
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              medicine.medicineAvailable++;
-                            });
-                          },
-
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              top: 0,
-                              bottom: 0,
-                              left: 25,
-                              right: 0,
-                            ),
-                            child: Icon(Icons.add_circle_rounded),
-                          ),
+                Container(
+                  margin: EdgeInsets.only(right: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.only(
+                          top: 0,
+                          bottom: 0,
+                          left: 20,
+                          right: 0,
                         ),
-
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              medicine.medicineAvailable--;
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              top: 0,
-                              bottom: 0,
-                              left: 5,
-                              right: 0,
-                            ),
-                            child: Icon(Icons.remove_circle),
-                          ),
+                        child: Text(
+                          style: TextStyle(fontSize: 20),
+                          medicine.medicineAvailable.toString() + " Pc",
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                medicine.medicineAvailable++;
+                              });
+                            },
+
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                top: 0,
+                                bottom: 0,
+                                left: 25,
+                                right: 0,
+                              ),
+                              child: Icon(Icons.add_circle_rounded),
+                            ),
+                          ),
+
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                medicine.medicineAvailable--;
+                              });
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                top: 0,
+                                bottom: 0,
+                                left: 5,
+                                right: 0,
+                              ),
+                              child: Icon(Icons.remove_circle),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -183,10 +208,20 @@ class _Inventory_PageState extends State<Inventory_Page> {
 
       margin: EdgeInsets.only(left: 20, right: 20, bottom: 0),
       decoration: BoxDecoration(
-        color: Colors.green,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+
+            Color(0xFF53BF58),
+            Color(0xFF79BD7C),
+          ],
+        ),
         borderRadius: BorderRadius.circular(20),
+        border: currentInventoryPage == 0 ? Border.all(width: 3, color: Colors.blue) : null,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
             alignment: Alignment.centerLeft,
@@ -250,14 +285,14 @@ class _Inventory_PageState extends State<Inventory_Page> {
               ],
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(
                     top: 0,
                     bottom: 0,
-                    left: 0,
+                    left: 30,
                     right: 0,
                   ),
                   child: Image.asset(
@@ -277,65 +312,69 @@ class _Inventory_PageState extends State<Inventory_Page> {
                   ),
                 ),
 
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerRight,
-                      margin: EdgeInsets.only(
-                        top: 0,
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                      ),
-                      child: Text(
-                        style: TextStyle(fontSize: 15),
-                        medicine.equipmentAvailable.toString() + " Units",
-                      ),
-                    ),
+                Container(
+                  margin: EdgeInsets.only(right: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              medicine.equipmentAvailable++;
-                            });
-                          },
-
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              top: 0,
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                            ),
-                            child: Icon(Icons.add_circle_rounded),
-                          ),
+                    children: [
+                      Container(
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.only(
+                          top: 0,
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
                         ),
-
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              medicine.equipmentAvailable--;
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              top: 0,
-                              bottom: 0,
-                              left: 5,
-                              right: 0,
-                            ),
-                            child: Icon(Icons.remove_circle),
-                          ),
+                        child: Text(
+                          style: TextStyle(fontSize: 15),
+                          medicine.equipmentAvailable.toString() + " Units",
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                medicine.equipmentAvailable++;
+                              });
+                            },
+
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                              ),
+                              child: Icon(Icons.add_circle_rounded),
+                            ),
+                          ),
+
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                medicine.equipmentAvailable--;
+                              });
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                top: 0,
+                                bottom: 0,
+                                left: 5,
+                                right: 0,
+                              ),
+                              child: Icon(Icons.remove_circle),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -357,10 +396,20 @@ class _Inventory_PageState extends State<Inventory_Page> {
 
       margin: EdgeInsets.only(left: 20, right: 20, bottom: 0),
       decoration: BoxDecoration(
-        color: Colors.orange,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+
+            Color(0xFFFBB02C),
+            Color(0xFFFBC365),
+          ],
+        ),
         borderRadius: BorderRadius.circular(20),
+        border: currentInventoryPage == 1 ? Border.all(width: 3, color: Colors.blue) : null,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
             alignment: Alignment.centerLeft,

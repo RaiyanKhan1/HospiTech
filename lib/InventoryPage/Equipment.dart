@@ -17,18 +17,18 @@ class Equipment {
 
 List<Equipment> Equipmentlist = [
   Equipment(
-    equipmentName: "Bandaid",
+    equipmentName: "Band-Aid",
     equipmentAvailable: 100,
     equipmentImage: "assets/EquipmentImage/bandaid.jpg",
   ),
   Equipment(
     equipmentName: "scissors",
-    equipmentAvailable: 100,
-    equipmentImage: "assets/EquipmentImage/bandaid.jpg",
+    equipmentAvailable: 78,
+    equipmentImage: "assets/EquipmentImage/scissors.jpg",
   ),
   Equipment(
     equipmentName: "ECG",
-    equipmentAvailable: 100,
-    equipmentImage: "assets/EquipmentImage/bandaid.jpg",
+    equipmentAvailable: 35,
+    equipmentImage: "assets/EquipmentImage/ecg.jpg",
   ),
 ];
