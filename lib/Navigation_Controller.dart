@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'InventoryPage/Inventory_Page.dart';
-
+import 'Patient_Details/Patient_List.dart';
 class Navigation_Controller extends StatefulWidget {
   const Navigation_Controller({super.key});
 
@@ -20,7 +20,7 @@ List<String> navTitle = ["Details", "Add Patient", "Inventory"];
 int selectedNavIndex = 2;
 
 List<Widget> pages = [
-   Container(color: Colors.greenAccent,),
+  PatientListScreen(),
   Container(color: Colors.red,),
   Inventory_Page(),
 ];
