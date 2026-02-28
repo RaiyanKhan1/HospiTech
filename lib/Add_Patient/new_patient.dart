@@ -96,12 +96,12 @@ class _NewPatientState extends State<NewPatient> {
                           Row(
                               children: [
                                 Expanded(
-                                  child: inputField(controller: textcontroller, hint: 'Age', keyboardType: TextInputType.number),
+                                  child: inputField(controller: ageController, hint: 'Age', keyboardType: TextInputType.number),
                                 ),
 
                                 const SizedBox(width: 15,),
                                 Expanded(
-                                  child: inputField(controller: textcontroller, hint: 'Gender'),
+                                  child: inputField(controller: genderController, hint: 'Gender'),
 
                                 ),
 
@@ -109,13 +109,13 @@ class _NewPatientState extends State<NewPatient> {
                           ),
                           SizedBox(height: screenHeight * 0.005,),
 
-                          inputField(controller: textcontroller, hint: 'Phone Number'),
+                          inputField(controller: phoneController, hint: 'Phone Number'),
                           SizedBox(height: screenHeight * 0.005,),
 
-                          inputField(controller: textcontroller, hint: 'Assigned Doctor'),
+                          inputField(controller: doctorController, hint: 'Assigned Doctor'),
                           SizedBox(height: screenHeight * 0.005,),
 
-                          inputField(controller: textcontroller, hint: 'Health Condition'),
+                          inputField(controller: healthconditionController, hint: 'Health Condition'),
                           SizedBox(height: screenHeight * 0.005,),
 
                           FractionallySizedBox(
