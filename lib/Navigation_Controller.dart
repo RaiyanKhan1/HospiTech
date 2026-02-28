@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hospi_tech/Login_Screen/login_screen.dart';
 
 import 'InventoryPage/Inventory_Page.dart';
 import 'Patient_Details/Patient_List.dart';
+import 'Add_Patient/new_patient.dart';
+
 class Navigation_Controller extends StatefulWidget {
   const Navigation_Controller({super.key});
 
@@ -21,7 +24,7 @@ int selectedNavIndex = 2;
 
 List<Widget> pages = [
   PatientListScreen(),
-  Container(color: Colors.red,),
+  NewPatient(),
   Inventory_Page(),
 ];
 
