@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Login_Screen/login_screen.dart';
 import 'Navigation_Controller.dart';
 
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Navigation_Controller(),
+      home: const LoginScreen(),
     );
   }
 }

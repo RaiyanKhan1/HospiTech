@@ -29,7 +29,7 @@ class _NewPatientState extends State<NewPatient> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(height: screenHeight * 0.15),
+            SizedBox(height: screenHeight * 0.05),
             Padding(
               padding: EdgeInsetsGeometry.only(left: 15, right: 15),
               child: Container(

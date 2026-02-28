@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Navigation_Controller.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -115,6 +117,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             child: ElevatedButton.icon(
                                 onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Navigation_Controller(),
+                                      ),
+                                  );
 
                                 },
                                 label: Text('LOGIN',
