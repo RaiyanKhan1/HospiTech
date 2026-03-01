@@ -14,7 +14,6 @@ class Medicine {
 
 }
 
-
 List<Medicine> Medicinelist = [
   Medicine(
     medicineName: "Napa",

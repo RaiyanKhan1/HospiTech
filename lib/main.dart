@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Login_Screen/login_screen.dart';
 import 'Navigation_Controller.dart';
-
-
+import 'Registration_Screen/RegistrationScreen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
 
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginScreen(),
+      home: const RegisterScreen (),//LoginScreen ,RegisterScreen
     );
   }
 }

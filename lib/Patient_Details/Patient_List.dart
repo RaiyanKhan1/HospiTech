@@ -5,6 +5,7 @@ class Patient {
   int age;
   String gender;
   String admittedDate;
+
   Patient({
     required this.name,
     required this.age,
@@ -38,7 +39,6 @@ class _PatientListScreenState extends State<PatientListScreen> {
         gender: 'Female',
         admittedDate:'1/11/23')
   ];
-
   int get totalPatients => patients.length;
   void releasePatient(int index) {
     setState(() {
