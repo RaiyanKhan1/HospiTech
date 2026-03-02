@@ -26,161 +26,163 @@ class _NewPatientState extends State<NewPatient> {
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(height: screenHeight * 0.05),
-            Padding(
-              padding: EdgeInsetsGeometry.only(left: 15, right: 15),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (bounds) => const LinearGradient(
-                    /*colors: [Color(0xFF00E676),
-                      Color(0xFF69F0AE),
-                      Color(0xFF00E676),]*/
-                    colors: [
-                      Color(0xFF2CF194),
-                      Color(0xFF81DD84),
-                      //Color(0xFF1ACC74),
-                      Color(0xFF8CEF46),
-                    ]
-                  ).createShader(bounds),
-                  child: Text('Add\nPatient',
-
-                      textAlign: TextAlign.left,
-                      style: GoogleFonts.archivoBlack(
-                        height: 0.9,
-                        color: Colors.green,
-                        fontSize: 60,
-                      )
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(height: screenHeight * 0.05),
+              Padding(
+                padding: EdgeInsetsGeometry.only(left: 15, right: 15),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) => const LinearGradient(
+                      /*colors: [Color(0xFF00E676),
+                        Color(0xFF69F0AE),
+                        Color(0xFF00E676),]*/
+                      colors: [
+                        Color(0xFF2CF194),
+                        Color(0xFF81DD84),
+                        //Color(0xFF1ACC74),
+                        Color(0xFF8CEF46),
+                      ]
+                    ).createShader(bounds),
+                    child: Text('Add\nPatient',
+          
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.archivoBlack(
+                          height: 0.9,
+                          color: Colors.green,
+                          fontSize: 60,
+                        )
+                    ),
                   ),
                 ),
               ),
-            ),
-
-            SizedBox(height: screenHeight * 0.05),
-            Expanded(
-                child:
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: screenHeight * 0.1),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF2CF194),
-                            Color(0xFF0FCA4A),
-                            //Color(0xFF1ACC74),
-                            Color(0xFFA2ED0C),
-                            //Colors.white,
+          
+              SizedBox(height: screenHeight * 0.05),
+              
+                  
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: screenHeight * 0.1),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0xFF2CF194),
+                              Color(0xFF0FCA4A),
+                              //Color(0xFF1ACC74),
+                              Color(0xFFA2ED0C),
+                              //Colors.white,
+                            ],
+          
+                            begin: AlignmentGeometry.topRight,
+                            end: AlignmentGeometry.bottomLeft,
+                          ),
+                          borderRadius: BorderRadius.circular(40)),
+                      child: Padding(
+                        padding: EdgeInsets.all(30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            inputField(controller: textcontroller, hint: 'Enter Name'),
+                            SizedBox(height: screenHeight * 0.005,),
+                            Row(
+                                children: [
+                                  Expanded(
+                                    child: inputField(controller: ageController, hint: 'Age', keyboardType: TextInputType.number),
+                                  ),
+          
+                                  const SizedBox(width: 15,),
+                                  Expanded(
+                                    child: inputField(controller: genderController, hint: 'Gender'),
+          
+                                  ),
+          
+                                ]
+                            ),
+                            SizedBox(height: screenHeight * 0.005,),
+          
+                            inputField(controller: phoneController, hint: 'Phone Number'),
+                            SizedBox(height: screenHeight * 0.005,),
+          
+                            inputField(controller: doctorController, hint: 'Assigned Doctor'),
+                            SizedBox(height: screenHeight * 0.005,),
+          
+                            inputField(controller: healthconditionController, hint: 'Health Condition'),
+                            SizedBox(height: screenHeight * 0.005,),
+          
+                            FractionallySizedBox(
+                              widthFactor: 0.75,
+                              child: ElevatedButton.icon(
+                                  onPressed: () {
+          
+                                  },
+                                  label: Text('Upload Prescription'),
+                                  icon: Icon(Icons.note_add_outlined),
+                                  iconAlignment: IconAlignment.start,
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.grey,
+                                  )
+                              ),
+                            ),
+          
+                            FractionallySizedBox(
+                              widthFactor: 0.75,
+                              child: ElevatedButton.icon(
+                                  onPressed: () {
+          
+                                  },
+                                  label: Text('Upload Report'),
+                                  icon: Icon(Icons.note_add_outlined),
+                                  iconAlignment: IconAlignment.start,
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.grey,
+                                  )
+                              ),
+                            ),
+          
+                            SizedBox(height: screenHeight * 0.03),
+          
+                            Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton.icon(
+          
+                                  onPressed: () {
+          
+                                  },
+                                  label: Text('SAVE'),
+                                  icon: Icon(Icons.person_add_alt_outlined),
+                                  iconAlignment: IconAlignment.start,
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.green,
+                                  )
+                              ),
+                            ),
+          
                           ],
-
-                          begin: AlignmentGeometry.topRight,
-                          end: AlignmentGeometry.bottomLeft,
                         ),
-                        borderRadius: BorderRadius.circular(40)),
-                    child: Padding(
-                      padding: EdgeInsets.all(30),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          inputField(controller: textcontroller, hint: 'Enter Name'),
-                          SizedBox(height: screenHeight * 0.005,),
-                          Row(
-                              children: [
-                                Expanded(
-                                  child: inputField(controller: ageController, hint: 'Age', keyboardType: TextInputType.number),
-                                ),
-
-                                const SizedBox(width: 15,),
-                                Expanded(
-                                  child: inputField(controller: genderController, hint: 'Gender'),
-
-                                ),
-
-                              ]
-                          ),
-                          SizedBox(height: screenHeight * 0.005,),
-
-                          inputField(controller: phoneController, hint: 'Phone Number'),
-                          SizedBox(height: screenHeight * 0.005,),
-
-                          inputField(controller: doctorController, hint: 'Assigned Doctor'),
-                          SizedBox(height: screenHeight * 0.005,),
-
-                          inputField(controller: healthconditionController, hint: 'Health Condition'),
-                          SizedBox(height: screenHeight * 0.005,),
-
-                          FractionallySizedBox(
-                            widthFactor: 0.75,
-                            child: ElevatedButton.icon(
-                                onPressed: () {
-
-                                },
-                                label: Text('Upload Prescription'),
-                                icon: Icon(Icons.note_add_outlined),
-                                iconAlignment: IconAlignment.start,
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.grey,
-                                )
-                            ),
-                          ),
-
-                          FractionallySizedBox(
-                            widthFactor: 0.75,
-                            child: ElevatedButton.icon(
-                                onPressed: () {
-
-                                },
-                                label: Text('Upload Report'),
-                                icon: Icon(Icons.note_add_outlined),
-                                iconAlignment: IconAlignment.start,
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.grey,
-                                )
-                            ),
-                          ),
-
-                          SizedBox(height: screenHeight * 0.03),
-
-                          Align(
-                            alignment: Alignment.center,
-                            child: ElevatedButton.icon(
-
-                                onPressed: () {
-
-                                },
-                                label: Text('SAVE'),
-                                icon: Icon(Icons.person_add_alt_outlined),
-                                iconAlignment: IconAlignment.start,
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.green,
-                                )
-                            ),
-                          ),
-
-                        ],
                       ),
                     ),
-                  ),
-
-
-                )
-            )
-          ],
+          
+          
+                  )
+              
+            ],
+          ),
         )
     );
   }

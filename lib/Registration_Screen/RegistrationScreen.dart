@@ -60,7 +60,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       SizedBox(height: screenHeight * 0.02),
 
-
                       TextField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,

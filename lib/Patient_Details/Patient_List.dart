@@ -22,7 +22,7 @@ class PatientListScreen extends StatefulWidget {
 class _PatientListScreenState extends State<PatientListScreen> {
   List<Patient> patients = [
     Patient(
-      name: 'Joy',
+      name: 'Omi',
       age: 30,
       gender: 'MALE',
       admittedDate: '9/11/25',
