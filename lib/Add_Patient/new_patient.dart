@@ -199,7 +199,7 @@ class _NewPatientState extends State<NewPatient> {
                               //label: reportPath == null? Text('Upload Report') : Text('Report Added'),
                               label: Row(
                                 children: [
-                                  prescriptionPath == null? Text('Upload Report') : Text('Report Added'),
+                                  reportPath == null? Text('Upload Report') : Text('Report Added'),
                                   const SizedBox(width: 5),
                                   if(reportPath != null)
                                     Icon(Icons.check_circle_outline_rounded,
