@@ -22,7 +22,7 @@ class PatientListScreen extends StatefulWidget {
 class _PatientListScreenState extends State<PatientListScreen> {
   List<Patient> patients = [
     Patient(
-      name: 'Omi',
+      name: 'Joy',
       age: 30,
       gender: 'MALE',
       admittedDate: '9/11/25',
@@ -67,6 +67,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
                     'TOTAL PATIENTS:',
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: 10,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -74,6 +75,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
                     '$totalPatients',
                     style: const TextStyle(
                       color: Colors.white,
+                      fontSize: 10,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

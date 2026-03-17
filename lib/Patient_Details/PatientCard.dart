@@ -34,9 +34,9 @@ class PatientCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(20),
-            blurRadius: 10,
-            spreadRadius: 10,
+            color: Colors.black.withAlpha(10),
+            blurRadius: 5,
+            spreadRadius: 5,
           ),
         ],
       ),
@@ -47,23 +47,27 @@ class PatientCard extends StatelessWidget {
             name,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             '${age}Y  $gender',
-            style: const TextStyle(color: Colors.white70),
+            style: const TextStyle(
+                color: Colors.white70,
+              fontSize: 10,
+
+            ),
           ),
           const SizedBox(height: 20),
           Row(
             children: const [
-              Icon(Icons.description_outlined, color: Colors.white),
+              Icon(Icons.description_outlined, color: Colors.white, size: 24),
               SizedBox(width: 20),
-              Icon(Icons.edit_outlined, color: Colors.white),
+              Icon(Icons.edit_outlined, color: Colors.white, size: 24),
               SizedBox(width: 20),
-              Icon(Icons.show_chart, color: Colors.white),
+              Icon(Icons.show_chart, color: Colors.white, size: 24),
             ],
           ),
           const SizedBox(height: 20),
@@ -72,7 +76,10 @@ class PatientCard extends StatelessWidget {
             children: [
               Text(
                 'Admitted : $admittedDate',
-                style: const TextStyle(color: Colors.white70),
+                style: const TextStyle(
+                    color: Colors.white70,
+                  fontSize: 10,
+                ),
               ),
               TextButton(
                 onPressed: onRelease,
@@ -81,7 +88,10 @@ class PatientCard extends StatelessWidget {
                 ),
                 child: const Text(
                   'release',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                       fontSize: 10,
+                  ),
                 ),
               ),
             ],
