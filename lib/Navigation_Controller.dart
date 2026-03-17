@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hospi_tech/Login_Screen/login_screen.dart';
 
 import 'InventoryPage/Inventory_Page.dart';
@@ -33,6 +34,68 @@ class _Navigation_ControllerState extends State<Navigation_Controller> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('HOSPITECH',
+        style: GoogleFonts.archivoBlack(
+          //fontWeight: FontWeight.bold,
+        )
+        ),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [
+            Color(0xFF5B9EFF),
+            Color(0xFF4A79DD),
+          ],
+        ),
+      ),
+    ),
+        foregroundColor: Colors.white,
+      ),
+      drawer: Drawer( //app drawer
+        child: Container(
+          child: ListView(
+            children: [
+              UserAccountsDrawerHeader(
+                accountName: Text('Username', style: GoogleFonts.archivo(),), 
+                accountEmail: Text('Email', style: GoogleFonts.archivo(),),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Color(0xFF5B9EFF),
+                      Color(0xFF4A79DD),
+                      ],
+        ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Profile',
+                  style: GoogleFonts.archivo(),),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.settings_rounded,),
+                title: Text('Settings',
+                  style: GoogleFonts.archivo(),),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text('About',
+                  style: GoogleFonts.archivo(),),
+                onTap: () {},
+              )
+            ],
+          ),
+        )
+      ),
       body: Stack(
         children: [
 

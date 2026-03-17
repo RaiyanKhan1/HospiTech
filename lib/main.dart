@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginScreen(),//LoginScreen ,RegisterScreen
+      home: const  LoginScreen(),//LoginScreen ,RegisterScreen
     );
   }
 }
