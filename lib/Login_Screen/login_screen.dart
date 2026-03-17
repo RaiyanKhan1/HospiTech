@@ -1,7 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hospi_tech/Registration_Screen/RegistrationScreen.dart';
 
 import '../Navigation_Controller.dart';
 
@@ -107,8 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: screenHeight * 0.06,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
-                                const Color.fromARGB(255, 27, 94, 32),
-                                const Color.fromARGB(255, 76, 175, 104),
+                                //const Color.fromARGB(255, 27, 94, 32),
+                                //const Color.fromARGB(255, 76, 175, 104),
+                              const Color.fromARGB(255, 76, 175, 111),
+                              const Color.fromARGB(255, 43, 249, 84),
 
                               ], begin: AlignmentGeometry.bottomLeft,
                                   end: AlignmentGeometry.topRight),
@@ -136,11 +139,30 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                   backgroundColor: Colors.transparent,
-                                  foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+                                  foregroundColor: Colors.white,
                                   elevation: 0,
                                 )
                             ),
                           ),
+                          SizedBox(height: screenHeight * 0.02,),
+                          RichText(
+                            text: TextSpan(
+                              style: GoogleFonts.ubuntu(
+                                color: Colors.black,
+                              ),
+                              children: [
+                                TextSpan(text: 'New to Hospitech? '),
+                                TextSpan(text: 'Register Now!',
+                                style: TextStyle(
+                                  color: const Color.fromARGB(255, 79, 189, 85),
+                                ),
+                                recognizer: TapGestureRecognizer()..onTap = () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                                }
+                                
+                                ),
+                              ]
+                          ))
 
                         ],
                       )
