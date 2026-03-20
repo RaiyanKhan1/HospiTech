@@ -103,8 +103,6 @@ class PatientCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 20),
-              const Icon(Icons.edit_outlined, color: Colors.white, size: 24),
-              const SizedBox(width: 20),
               IconButton(
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
