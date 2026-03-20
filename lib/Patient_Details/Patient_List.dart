@@ -1,50 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:hospi_tech/Add_Patient/Patient.dart';
 import 'PatientCard.dart';
-class Patient {
-  String name;
-  int age;
-  String gender;
-  String admittedDate;
 
-  Patient({
-    required this.name,
-    required this.age,
-    required this.gender,
-    required this.admittedDate,
-  });
-}
 class PatientListScreen extends StatefulWidget {
-  const PatientListScreen({super.key});
+  final List<Patient> archivedPatients;
+
+  const PatientListScreen({
+    super.key,
+    required this.archivedPatients,
+  });
 
   @override
-  State<PatientListScreen> createState() => _PatientListScreenState();
+  PatientListScreenState createState() => PatientListScreenState();
 }
-class _PatientListScreenState extends State<PatientListScreen> {
+
+class PatientListScreenState extends State<PatientListScreen> {
   List<Patient> patients = [
-    Patient(
-      name: 'Joy',
-      age: 30,
-      gender: 'MALE',
-      admittedDate: '9/11/25',
-    ),
-    Patient(
-      name: 'Munia',
-      age: 23,
-      gender: 'Female',
-      admittedDate: '10/11/26',
-    ),
-    Patient(
-        name: 'Fariha',
-        age: 22,
-        gender: 'Female',
-        admittedDate:'1/11/23')
   ];
   int get totalPatients => patients.length;
+  void addPatient(Patient patient) {
+    setState(() {
+      patients.add(patient);
+    });
+  }
+
   void releasePatient(int index) {
     setState(() {
+      widget.archivedPatients.add(patients[index]);
       patients.removeAt(index);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,8 +40,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
           children: [
             Container(
               margin: const EdgeInsets.all(16),
-              padding:
-              const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               decoration: BoxDecoration(
                 color: Colors.black87,
                 borderRadius: BorderRadius.circular(30),
@@ -89,10 +74,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
                 itemBuilder: (context, index) {
                   final patient = patients[index];
                   return PatientCard(
-                    name: patient.name,
-                    age: patient.age,
-                    gender: patient.gender,
-                    admittedDate: patient.admittedDate,
+                    patient: patient,
                     onRelease: () => releasePatient(index),
                   );
                 },

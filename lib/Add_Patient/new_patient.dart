@@ -50,7 +50,7 @@ class _NewPatientState extends State<NewPatient> {
         reportPath: reportPath
     );
 
-    print("Patient Object Created: ${newPatient.name}"); //just for checking
+    Navigator.pop(context, newPatient);
 
   }
 
@@ -225,7 +225,7 @@ class _NewPatientState extends State<NewPatient> {
                           child: ElevatedButton.icon(
 
                               onPressed: () {
-                                savePatient(); //call save_patient and create patient object
+                                savePatient();
                               },
                               label: Text('SAVE'),
                               icon: Icon(Icons.person_add_alt_outlined),

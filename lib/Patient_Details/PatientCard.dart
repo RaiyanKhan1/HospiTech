@@ -1,32 +1,60 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hospi_tech/Add_Patient/Patient.dart';
 
 class PatientCard extends StatelessWidget {
-  final String name;
-  final int age;
-  final String gender;
-  final String admittedDate;
+  final Patient patient;
   final VoidCallback? onRelease;
 
   const PatientCard({
     super.key,
-    required this.name,
-    required this.age,
-    required this.gender,
-    required this.admittedDate,
+    required this.patient,
     this.onRelease,
   });
 
+  String _formatDate(DateTime d) => '${d.day}/${d.month}/${d.year}';
+
+  void _viewImage(BuildContext context, String path, String title) {
+    final file = File(path);
+    if (!file.existsSync()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$title not found'), backgroundColor: Colors.red),
+      );
+      return;
+    }
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.black,
+        child: Stack(
+          children: [
+            InteractiveViewer(child: Image.file(file, fit: BoxFit.contain)),
+            Positioned(
+              top: 10, right: 10,
+              child: IconButton(
+                icon: const Icon(Icons.close, color: Colors.white),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final hasPrescription = patient.prescriptionPath?.isNotEmpty == true;
+    final hasReport = patient.reportPath?.isNotEmpty == true;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           colors: [
-
             Color(0xFF5B9EFF),
             Color(0xFF4A79DD),
           ],
@@ -44,7 +72,7 @@ class PatientCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            name,
+            patient.name,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 14,
@@ -53,21 +81,42 @@ class PatientCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '${age}Y  $gender',
+            '${patient.age}Y  ${patient.gender}',
             style: const TextStyle(
-                color: Colors.white70,
+              color: Colors.white70,
               fontSize: 10,
-
             ),
           ),
           const SizedBox(height: 20),
           Row(
-            children: const [
-              Icon(Icons.description_outlined, color: Colors.white, size: 24),
-              SizedBox(width: 20),
-              Icon(Icons.edit_outlined, color: Colors.white, size: 24),
-              SizedBox(width: 20),
-              Icon(Icons.show_chart, color: Colors.white, size: 24),
+            children: [
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: hasPrescription
+                    ? () => _viewImage(context, patient.prescriptionPath!, 'Prescription')
+                    : null,
+                icon: Icon(
+                  Icons.description_outlined,
+                  color: hasPrescription ? Colors.white : Colors.white38,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 20),
+              const Icon(Icons.edit_outlined, color: Colors.white, size: 24),
+              const SizedBox(width: 20),
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: hasReport
+                    ? () => _viewImage(context, patient.reportPath!, 'Report')
+                    : null,
+                icon: Icon(
+                  Icons.show_chart,
+                  color: hasReport ? Colors.white : Colors.white38,
+                  size: 24,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 20),
@@ -75,9 +124,9 @@ class PatientCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Admitted : $admittedDate',
+                'Admitted : ${_formatDate(patient.dateAdmitted)}',
                 style: const TextStyle(
-                    color: Colors.white70,
+                  color: Colors.white70,
                   fontSize: 10,
                 ),
               ),
@@ -89,8 +138,8 @@ class PatientCard extends StatelessWidget {
                 child: const Text(
                   'release',
                   style: TextStyle(
-                      color: Colors.white,
-                       fontSize: 10,
+                    color: Colors.white,
+                    fontSize: 10,
                   ),
                 ),
               ),
@@ -101,4 +150,3 @@ class PatientCard extends StatelessWidget {
     );
   }
 }
-
