@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+
 import 'package:hospi_tech/Add_Patient/Patient.dart';
+
 import 'PatientCard.dart';
+import 'package:hospi_tech/Add_Patient/new_patient.dart';
 
 class PatientListScreen extends StatefulWidget {
   final List<Patient> archivedPatients;
@@ -17,7 +23,9 @@ class PatientListScreen extends StatefulWidget {
 class PatientListScreenState extends State<PatientListScreen> {
   List<Patient> patients = [
   ];
+
   int get totalPatients => patients.length;
+
   void addPatient(Patient patient) {
     setState(() {
       patients.add(patient);
@@ -30,6 +38,7 @@ class PatientListScreenState extends State<PatientListScreen> {
       patients.removeAt(index);
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

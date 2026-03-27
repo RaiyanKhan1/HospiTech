@@ -14,6 +14,7 @@ class ArchivedPage extends StatefulWidget {
 }
 
 class _ArchivedPageState extends State<ArchivedPage> {
+
   String _formatDate(DateTime d) => '${d.day}/${d.month}/${d.year}';
 
   void _viewImage(BuildContext context, String path, String title) {

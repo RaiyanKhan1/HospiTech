@@ -1,7 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:hospi_tech/Add_Patient/Patient.dart';
+
 
 class NewPatient extends StatefulWidget {
   const NewPatient({super.key});
@@ -11,6 +15,7 @@ class NewPatient extends StatefulWidget {
 }
 
 class _NewPatientState extends State<NewPatient> {
+
 
 
   final nameController = TextEditingController();
@@ -38,6 +43,8 @@ class _NewPatientState extends State<NewPatient> {
   }
 
   savePatient() {
+
+
     final newPatient = Patient(
         name: nameController.text,
         age: int.tryParse(ageController.text) ?? 0,
@@ -50,7 +57,7 @@ class _NewPatientState extends State<NewPatient> {
         reportPath: reportPath
     );
 
-    Navigator.pop(context, newPatient);
+
 
   }
 

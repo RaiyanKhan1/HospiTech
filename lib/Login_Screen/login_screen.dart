@@ -5,6 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hospi_tech/Registration_Screen/RegistrationScreen.dart';
 
 import '../Navigation_Controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final _auth = FirebaseAuth.instance;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -110,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               gradient: LinearGradient(colors: [
                                 //const Color.fromARGB(255, 27, 94, 32),
                                 //const Color.fromARGB(255, 76, 175, 104),
-                              const Color.fromARGB(255, 76, 175, 111),
-                              const Color.fromARGB(255, 43, 249, 84),
+                                const Color.fromARGB(255, 76, 175, 111),
+                                const Color.fromARGB(255, 43, 249, 84),
 
                               ], begin: AlignmentGeometry.bottomLeft,
                                   end: AlignmentGeometry.topRight),
@@ -119,13 +122,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             ),
                             child: ElevatedButton.icon(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Navigation_Controller(),
-                                      ),
-                                  );
+                                onPressed: () async{
+                                   try{
+                                     await _auth.signInWithEmailAndPassword(email: usernameController.text.trim(), password: passwordController.text.trim());
+                                     Navigator.push(
+                                       context,
+                                       MaterialPageRoute(
+                                         builder: (context) => Navigation_Controller(),
+                                       ),
+                                     );
+                                   }
+                                   catch(e)
+                                  {
+                                      print(e);
+                                  }
+
 
                                 },
                                 label: Text('LOGIN',
@@ -146,23 +157,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           SizedBox(height: screenHeight * 0.02,),
                           RichText(
-                            text: TextSpan(
-                              style: GoogleFonts.ubuntu(
-                                color: Colors.black,
-                              ),
-                              children: [
-                                TextSpan(text: 'New to Hospitech? '),
-                                TextSpan(text: 'Register Now!',
-                                style: TextStyle(
-                                  color: const Color.fromARGB(255, 79, 189, 85),
-                                ),
-                                recognizer: TapGestureRecognizer()..onTap = () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
-                                }
-                                
-                                ),
-                              ]
-                          ))
+                              text: TextSpan(
+                                  style: GoogleFonts.ubuntu(
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(text: 'New to Hospitech? '),
+                                    TextSpan(text: 'Register Now!',
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(255, 79, 189, 85),
+                                        ),
+                                        recognizer: TapGestureRecognizer()..onTap = () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                                        }
+
+                                    ),
+                                  ]
+                              ))
 
                         ],
                       )

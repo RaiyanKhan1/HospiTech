@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+final _auth = FirebaseAuth.instance;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -126,7 +128,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: ElevatedButton.icon(
-                          onPressed: () {
+                          onPressed: () async{
+                            try{
+                              await _auth.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+                              Navigator.of(context).pop();
+                            }
+                            catch (e){
+                              print(e);
+                            }
+
                           },
                           label: Text(
                             'REGISTER',

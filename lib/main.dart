@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'Add_Patient/Patient.dart';
 import 'Login_Screen/login_screen.dart';
 import 'Navigation_Controller.dart';
 import 'Registration_Screen/RegistrationScreen.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+
+
+void main() async{
+
+
+
   runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+
 
 
   @override
@@ -19,7 +37,7 @@ class MyApp extends StatelessWidget {
 
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const  LoginScreen(),//LoginScreen ,RegisterScreen
+      home: const  LoginScreen(),
     );
   }
 }
