@@ -9,11 +9,9 @@ import 'PatientCard.dart';
 import 'package:hospi_tech/Add_Patient/new_patient.dart';
 
 class PatientListScreen extends StatefulWidget {
-  final List<Patient> archivedPatients;
 
   const PatientListScreen({
     super.key,
-    required this.archivedPatients,
   });
 
   @override
@@ -26,19 +24,26 @@ class PatientListScreenState extends State<PatientListScreen> {
 
   int get totalPatients => patients.length;
 
-  void addPatient(Patient patient) {
-    setState(() {
-      patients.add(patient);
-    });
-  }
-
   void releasePatient(int index) {
+    final patientBox = Hive.box('PatientsBox');
+    final archivedBox = Hive.box('ArchivedBox');
+    final patientData = patientBox.getAt(index);
+    archivedBox.add(patientData);
+    patientBox.deleteAt(index);
     setState(() {
-      widget.archivedPatients.add(patients[index]);
-      patients.removeAt(index);
+      LoadPatients();
     });
   }
+   void LoadPatients() {
+    final box = Hive.box('PatientsBox');
+    patients = box.keys.map((key) => Patient.fromJson(Map<String, dynamic>.from(box.get(key)))).toList();
+  }
+  @override
+  void initState() {
 
+    super.initState();
+    LoadPatients();
+  }
 
   @override
   Widget build(BuildContext context) {

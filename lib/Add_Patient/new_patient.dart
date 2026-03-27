@@ -57,7 +57,8 @@ class _NewPatientState extends State<NewPatient> {
         reportPath: reportPath
     );
 
-
+    final box =  Hive.box('PatientsBox');
+    box.add(newPatient.toJson());
 
   }
 

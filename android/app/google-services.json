@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "76582614565",
+    "project_id": "hospitech-16351",
+    "storage_bucket": "hospitech-16351.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76582614565:android:0245f891f6e083c45a71cc",
+        "android_client_info": {
+          "package_name": "com.example.hospi_tech"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7IbFOBlCwSnzJ0A7ONYoOSfiW4OGP_MU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

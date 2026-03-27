@@ -8,7 +8,6 @@ class ArchivedPage extends StatefulWidget {
   final List<Patient> archivedPatients;
 
   const ArchivedPage({super.key, required this.archivedPatients});
-
   @override
   State<ArchivedPage> createState() => _ArchivedPageState();
 }

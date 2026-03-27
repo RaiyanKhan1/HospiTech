@@ -18,8 +18,10 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-
+  await Hive.initFlutter();
+  //var box =
+  await Hive.openBox('PatientsBox');
+  await Hive.openBox('ArchivedBox');
 }
 
 class MyApp extends StatelessWidget {

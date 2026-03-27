@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:hospi_tech/Add_Patient/Patient.dart';
 import 'package:hospi_tech/Login_Screen/login_screen.dart';
 
@@ -26,13 +27,16 @@ List<String> navTitle = ["Details", "Add Patient", "Inventory"];
 int selectedNavIndex = 2;
 
 List<Widget> pages = [
-  PatientListScreen(archivedPatients: [],),
+  PatientListScreen(),
   NewPatient(),
   Inventory_Page(),
 ];
 
 class _Navigation_ControllerState extends State<Navigation_Controller> {
-  List<Patient> get sharedArchivedPatients => [];
+  List<Patient> get sharedArchivedPatients {
+    final box = Hive.box('ArchivedBox');
+    return box.values.map((e) => Patient.fromJson(Map<String, dynamic>.from(e))).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
