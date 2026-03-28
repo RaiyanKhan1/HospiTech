@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-
 import 'package:hospi_tech/Add_Patient/Patient.dart';
-
 import 'PatientCard.dart';
 import 'package:hospi_tech/Add_Patient/new_patient.dart';
 
@@ -35,8 +32,16 @@ class PatientListScreenState extends State<PatientListScreen> {
     });
   }
    void LoadPatients() {
-    final box = Hive.box('PatientsBox');
-    patients = box.keys.map((key) => Patient.fromJson(Map<String, dynamic>.from(box.get(key)))).toList();
+     final box = Hive.box('PatientsBox');
+     List<Patient> list=[];
+
+     for (var key in box.keys){
+       var data=box.get(key);
+       var map=Map<String,dynamic>.from(data);
+       var patient=Patient.fromJson(map);
+       list.add(patient);
+     }
+     patients=list;
   }
   @override
   void initState() {
