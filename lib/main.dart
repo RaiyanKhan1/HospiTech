@@ -22,6 +22,7 @@ void main() async{
   //var box =
   await Hive.openBox('PatientsBox');
   await Hive.openBox('ArchivedBox');
+
 }
 
 class MyApp extends StatelessWidget {

@@ -4,45 +4,48 @@ import 'package:flutter/material.dart';
 class Medicine {
   String medicineName;
   int medicineAvailable;
-  String medicineImage;
+
 
   Medicine({
     required this.medicineName,
     required this.medicineAvailable,
-    required this.medicineImage
+
   });
 
+
+
 }
+
 
 List<Medicine> Medicinelist = [
   Medicine(
     medicineName: "Napa",
     medicineAvailable: 100,
-    medicineImage: "assets/MedicineImages/napa.jpg",
+
   ),
   Medicine(
     medicineName: "Sergel",
     medicineAvailable: 34,
-    medicineImage: "assets/MedicineImages/sergel.jpg",
+
   ),
   Medicine(
     medicineName: "Vitamin C",
     medicineAvailable: 55,
-    medicineImage: "assets/MedicineImages/sergel.jpg",
+
   ),
   Medicine(
     medicineName: "Cef-3",
     medicineAvailable: 22,
-    medicineImage: "assets/MedicineImages/sergel.jpg",
+
   ),
   Medicine(
     medicineName: "Vit D3",
     medicineAvailable: 12,
-    medicineImage: "assets/MedicineImages/sergel.jpg",
+
   ),
   Medicine(
     medicineName: "Renova",
     medicineAvailable: 54,
-    medicineImage: "assets/MedicineImages/sergel.jpg",
+
   ),
 ];
