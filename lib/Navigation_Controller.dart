@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:hospi_tech/Add_Patient/Patient.dart';
+import 'package:hospi_tech/App_Drawer/about.dart';
+import 'package:hospi_tech/App_Drawer/profile.dart';
 import 'package:hospi_tech/Login_Screen/login_screen.dart';
-
 import 'InventoryPage/Inventory_Page.dart';
 import 'Patient_Details/ArchivedPage.dart';
 import 'Patient_Details/Patient_List.dart';
 import 'Add_Patient/new_patient.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Navigation_Controller extends StatefulWidget {
   const Navigation_Controller({super.key});
@@ -69,8 +71,8 @@ class _Navigation_ControllerState extends State<Navigation_Controller> {
             child: ListView(
               children: [
                 UserAccountsDrawerHeader(
-                  accountName: Text('Username', style: GoogleFonts.archivo(),),
-                  accountEmail: Text('Email', style: GoogleFonts.archivo(),),
+                  accountName: SizedBox.shrink(),
+                  accountEmail: Text(FirebaseAuth.instance.currentUser?.email ?? "Guest", style: GoogleFonts.archivo(),),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
@@ -86,19 +88,19 @@ class _Navigation_ControllerState extends State<Navigation_Controller> {
                   leading: Icon(Icons.account_circle),
                   title: Text('Profile',
                     style: GoogleFonts.archivo(),),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: Icon(Icons.settings_rounded,),
-                  title: Text('Settings',
-                    style: GoogleFonts.archivo(),),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => Profile(),),);
+                  },
                 ),
                 ListTile(
                   leading: Icon(Icons.info),
                   title: Text('About',
                     style: GoogleFonts.archivo(),),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => About(),),);
+                  },
                 ),
                 ListTile(
                     leading: const Icon(Icons.archive_outlined),

@@ -16,12 +16,17 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+  
+
 class _LoginScreenState extends State<LoginScreen> {
+
+  final usernameController = new TextEditingController();
+  final passwordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
-    final usernameController = new TextEditingController();
-    final passwordController = new TextEditingController();
+    
 
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
@@ -125,16 +130,53 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () async{
                                    try{
                                      await _auth.signInWithEmailAndPassword(email: usernameController.text.trim(), password: passwordController.text.trim());
-                                     Navigator.push(
+                                     /*Navigator.push(
                                        context,
                                        MaterialPageRoute(
                                          builder: (context) => Navigation_Controller(),
                                        ),
+                                     );*/
+                                    
+
+                                     if (mounted) {
+                                      Navigator.pushReplacement(context, MaterialPageRoute(
+                                        builder: (context) => const Navigation_Controller(),
+                                      ),
                                      );
+                                    }
                                    }
-                                   catch(e)
+                                   on FirebaseAuthException catch(e)
                                   {
                                       print(e);
+
+                              String errorMessage;
+
+                              switch (e.code) {
+                                case 'invalid-email':
+                                  errorMessage = "The email address is invalid.";
+                                  break;
+                                case 'invalid-credential':
+                                  errorMessage = "Invalid credentials. Try Again.";
+                                  break;
+                                case 'channel-error':
+                                  errorMessage = "Enter both username and password";
+                                  break;
+                                default:
+                                errorMessage = "An error occurred. Please try again.";
+                              }
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Align(
+                                  alignment: AlignmentGeometry.center,
+                                  child: Text(errorMessage, style: GoogleFonts.ubuntu(),)),
+                                backgroundColor: Colors.redAccent,
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                duration: const Duration(seconds: 3),
+                                elevation: 5,),
+                              );
                                   }
 
 
