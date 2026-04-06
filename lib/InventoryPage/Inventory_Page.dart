@@ -4,6 +4,8 @@ import 'package:hive/hive.dart';
 
 import 'Medicine.dart';
 import 'Equipment.dart';
+import 'equipment_detail_page.dart';
+import 'medicine_detail_page.dart';
 
 class Inventory_Page extends StatefulWidget {
   const Inventory_Page({super.key});
@@ -66,10 +68,6 @@ class _Inventory_PageState extends State<Inventory_Page> {
                   ),
                 ],
               ),
-
-
-
-
 
       ),
     );
@@ -162,134 +160,145 @@ class _Inventory_PageState extends State<Inventory_Page> {
               itemCount: Medicinelist.length,
               itemBuilder: (context, index) {
                 final medicine = Medicinelist[index];
-                return Container(
-                  height: 100,
-                  margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(20),
-                        blurRadius: 1,
-                        spreadRadius: 1,
+                return GestureDetector(
+                  onTap: () {
+                    // Navigate to the detail page and pass the medicine object
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MedicineDetailPage(medicine: medicine,),
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40, height: 40,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFE3F2FD),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Icon(Icons.medication,
-                                  color: Color(0xFF1565C0), size: 20),
-                            ),
-                            SizedBox(width: 12),
-                            Text(
-                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
-                              medicine.medicineName,
-                            ),
-                          ],
+                    );
+                  },
+                  child: Container(
+                    height: 100,
+                    margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withAlpha(20),
+                          blurRadius: 1,
+                          spreadRadius: 1,
                         ),
-                      ),
-
-                      Container(
-                        margin: EdgeInsets.only(right: 30),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              alignment: Alignment.centerRight,
-                              margin: EdgeInsets.only(
-                                top: 0,
-                                bottom: 0,
-                                left: 45,
-                                right: 0,
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                  
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 40, height: 40,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE3F2FD),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(Icons.medication,
+                                    color: Color(0xFF1565C0), size: 20),
                               ),
-                              child: Row(
+                              SizedBox(width: 12),
+                              Text(
+                                style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
+                                medicine.medicineName,
+                              ),
+                            ],
+                          ),
+                        ),
+                  
+                        Container(
+                          margin: EdgeInsets.only(right: 30),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.only(
+                                  top: 0,
+                                  bottom: 0,
+                                  left: 45,
+                                  right: 0,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                                      medicine.medicineAvailable.toString(),
+                                    ),
+                                    Text(
+                                      style: TextStyle(fontSize: 14),
+                                      " Pc",
+                                    ),
+                                  ],
+                                )
+                              ),
+                  
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                                    medicine.medicineAvailable.toString(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        medicine.medicineAvailable--;
+                                      });
+                                    },
+                  
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                        top: 0,
+                                        bottom: 0,
+                                        left: 25,
+                                        right: 0,
+                                      ),
+                                      child: Container(
+                                        width: 28, height: 28,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF4F6FA),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey.shade300),
+                                        ),
+                                        child: Icon(Icons.remove, size: 16, color: Colors.grey[600]),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
-                                    style: TextStyle(fontSize: 14),
-                                    " Pc",
+                  
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        medicine.medicineAvailable++;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                        top: 0,
+                                        bottom: 0,
+                                        left: 5,
+                                        right: 0,
+                                      ),
+                                      child:  Container(
+                                        width: 28, height: 28,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF4F6FA),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey.shade300),
+                                        ),
+                                        child: Icon(Icons.add, size: 16, color: Colors.grey[600]),
+                                      ),
+                                    ),
                                   ),
                                 ],
-                              )
-                            ),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      medicine.medicineAvailable--;
-                                    });
-                                  },
-
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                      top: 0,
-                                      bottom: 0,
-                                      left: 25,
-                                      right: 0,
-                                    ),
-                                    child: Container(
-                                      width: 28, height: 28,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFF4F6FA),
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(color: Colors.grey.shade300),
-                                      ),
-                                      child: Icon(Icons.remove, size: 16, color: Colors.grey[600]),
-                                    ),
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      medicine.medicineAvailable++;
-                                    });
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                      top: 0,
-                                      bottom: 0,
-                                      left: 5,
-                                      right: 0,
-                                    ),
-                                    child:  Container(
-                                      width: 28, height: 28,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFF4F6FA),
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(color: Colors.grey.shade300),
-                                      ),
-                                      child: Icon(Icons.add, size: 16, color: Colors.grey[600]),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
@@ -346,134 +355,144 @@ class _Inventory_PageState extends State<Inventory_Page> {
               itemCount: Equipmentlist.length,
               itemBuilder: (context, index) {
                 final medicine = Equipmentlist[index];
-                return Container(
-                  height: 100,
-                  margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(20),
-                        blurRadius: 1,
-                        spreadRadius: 1,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EquipmentDetailPage(equipment: medicine),
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    );
+                  },
+                  child: Container(
+                    height: 100,
+                    margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withAlpha(20),
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
 
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40, height: 40,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFE3F2FD),
-                                borderRadius: BorderRadius.circular(12),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 40, height: 40,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE3F2FD),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(Icons.healing,
+                                    color: Color(0xFF1565C0), size: 20),
                               ),
-                              child: const Icon(Icons.healing,
-                                  color: Color(0xFF1565C0), size: 20),
-                            ),
-                            SizedBox(width: 12),
-                            Text(
-                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
-                              medicine.equipmentName,
-                            ),
-                          ],
+                              SizedBox(width: 12),
+                              Text(
+                                style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
+                                medicine.equipmentName,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
 
-                      Container(
-                        margin: EdgeInsets.only(right: 30),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                                alignment: Alignment.centerRight,
-                                margin: EdgeInsets.only(
-                                  top: 0,
-                                  bottom: 0,
-                                  left: 45,
-                                  right: 0,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
-                                      medicine.equipmentAvailable.toString(),
-                                    ),
-                                    Text(
-                                      style: TextStyle(fontSize: 14),
-                                      " Pc",
-                                    ),
-                                  ],
-                                )
-                            ),
+                        Container(
+                          margin: EdgeInsets.only(right: 30),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  alignment: Alignment.centerRight,
+                                  margin: EdgeInsets.only(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 45,
+                                    right: 0,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                                        medicine.equipmentAvailable.toString(),
+                                      ),
+                                      Text(
+                                        style: TextStyle(fontSize: 14),
+                                        " Pc",
+                                      ),
+                                    ],
+                                  )
+                              ),
 
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      medicine.equipmentAvailable--;
-                                    });
-                                  },
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        medicine.equipmentAvailable--;
+                                      });
+                                    },
 
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                      top: 0,
-                                      bottom: 0,
-                                      left: 25,
-                                      right: 0,
-                                    ),
                                     child: Container(
-                                      width: 28, height: 28,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFF4F6FA),
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(color: Colors.grey.shade300),
+                                      margin: EdgeInsets.only(
+                                        top: 0,
+                                        bottom: 0,
+                                        left: 25,
+                                        right: 0,
                                       ),
-                                      child: Icon(Icons.remove, size: 16, color: Colors.grey[600]),
+                                      child: Container(
+                                        width: 28, height: 28,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF4F6FA),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey.shade300),
+                                        ),
+                                        child: Icon(Icons.remove, size: 16, color: Colors.grey[600]),
+                                      ),
                                     ),
                                   ),
-                                ),
 
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      medicine.equipmentAvailable++;
-                                    });
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                      top: 0,
-                                      bottom: 0,
-                                      left: 5,
-                                      right: 0,
-                                    ),
-                                    child:  Container(
-                                      width: 28, height: 28,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFF4F6FA),
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(color: Colors.grey.shade300),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        medicine.equipmentAvailable++;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                        top: 0,
+                                        bottom: 0,
+                                        left: 5,
+                                        right: 0,
                                       ),
-                                      child: Icon(Icons.add, size: 16, color: Colors.grey[600]),
+                                      child:  Container(
+                                        width: 28, height: 28,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF4F6FA),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey.shade300),
+                                        ),
+                                        child: Icon(Icons.add, size: 16, color: Colors.grey[600]),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
